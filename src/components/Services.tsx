@@ -46,7 +46,7 @@ export default function Services({ onScrollToSection }: ServicesProps) {
         {/* Header Title with Subtext */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4" id="services-title-wrapper">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-accent/10 text-brand-primary dark:text-[#a0ded6]">
-            What I Do
+            SERVICES
           </div>
           <h2 
             id="services-title"
