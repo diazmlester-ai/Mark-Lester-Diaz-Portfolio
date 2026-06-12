@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@variant dark (.dark &);
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-primary: #264653;
+  --color-brand-accent: #2a9d8f;
+  --color-brand-light-bg: #edf6f9;
+  
+  --animate-infinite-scroll: infinite-scroll 110s linear infinite;
+  --animate-compass-swing: compass-swing 4s ease-in-out infinite;
+  --animate-cpu-pulse: cpu-pulse 2.5s ease-in-out infinite;
+  --animate-code-wiggle: code-wiggle 3.5s ease-in-out infinite;
+  --animate-rocket-float: rocket-float 3s ease-in-out infinite;
+  --animate-dash-flow: dash-flow 4s linear infinite;
+
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes compass-swing {
+    0%, 100% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+  }
+  @keyframes cpu-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+  @keyframes code-wiggle {
+    0%, 100% { transform: scale(1) translateX(0); }
+    50% { transform: scale(1.08) translateX(2px); }
+  }
+  @keyframes rocket-float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-6px) translateX(3px); }
+  }
+  @keyframes dash-flow {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -56; }
+  }
+}
+
+/* Custom smooth transitions for theme changes */
+.theme-transition {
+  transition: background-color 0.4s ease, border-color 0.4s ease, text-color 0.4s ease, fill 0.4s ease;
+}
+
