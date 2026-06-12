@@ -1,6 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, MapPin } from 'lucide-react';
 
+interface CounterProps {
+  end: number;
+  start?: number;
+  duration?: number;
+  suffix?: string;
+}
+
+function AnimatedCounter({ end, start = 0, duration = 1500, suffix = "" }: CounterProps) {
+  const [count, setCount] = useState(start);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    let animationId: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easeProgress = progress * (2 - progress); // easeOutQuad
+      
+      const currentCount = Math.floor(easeProgress * (end - start) + start);
+      setCount(currentCount);
+
+      if (progress < 1) {
+        animationId = requestAnimationFrame(animate);
+      }
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [end, start, duration]);
+
+  return <>{count}{suffix}</>;
+}
+
+interface RangeCounterProps {
+  endStart: number;
+  endEnd: number;
+  duration?: number;
+  suffix?: string;
+}
+
+function AnimatedRangeCounter({ endStart, endEnd, duration = 1500, suffix = "" }: RangeCounterProps) {
+  const [valS, setValS] = useState(1);
+  const [valE, setValE] = useState(1);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    let animationId: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easeProgress = progress * (2 - progress); // easeOutQuad
+      
+      const currentS = Math.floor(easeProgress * (endStart - 1) + 1);
+      const currentE = Math.floor(easeProgress * (endEnd - 1) + 1);
+      
+      setValS(currentS);
+      setValE(currentE);
+
+      if (progress < 1) {
+        animationId = requestAnimationFrame(animate);
+      }
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [endStart, endEnd, duration]);
+
+  return <>{valS}–{valE}{suffix}</>;
+}
+
 interface HeroProps {
   onScrollToSection: (id: string) => void;
 }
@@ -74,7 +146,6 @@ export default function Hero({ onScrollToSection }: HeroProps) {
                 View My Projects
               </button>
             </div>
- 
             {/* Trust Indicators / Metrics (Slightly larger metrics in white/dark color) */}
             <div 
               id="hero-trust-indicators"
@@ -84,7 +155,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
               {/* Metric 1 */}
               <div className="flex flex-col">
                 <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary dark:text-white tracking-tight">
-                  10+
+                  <AnimatedCounter end={10} suffix="+" />
                 </span>
                 <span className="text-[10px] sm:text-xs font-semibold text-brand-primary/75 dark:text-gray-300 mt-1 uppercase tracking-wide leading-tight">
                   Built<br />Automations
@@ -94,7 +165,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
               {/* Metric 2 */}
               <div className="flex flex-col">
                 <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary dark:text-white tracking-tight">
-                  10+
+                  <AnimatedCounter end={10} suffix="+" />
                 </span>
                 <span className="text-[10px] sm:text-xs font-semibold text-brand-primary/75 dark:text-gray-300 mt-1 uppercase tracking-wide leading-tight">
                   hours/week<br />saved
@@ -104,7 +175,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
               {/* Metric 3 */}
               <div className="flex flex-col">
                 <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary dark:text-white tracking-tight">
-                  80%
+                  <AnimatedCounter end={80} suffix="%" />
                 </span>
                 <span className="text-[10px] sm:text-xs font-semibold text-brand-primary/75 dark:text-gray-300 mt-1 uppercase tracking-wide leading-tight">
                   reduction in<br />manual work
@@ -114,13 +185,13 @@ export default function Hero({ onScrollToSection }: HeroProps) {
               {/* Metric 4 */}
               <div className="flex flex-col">
                 <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary dark:text-white tracking-tight">
-                  2–5x
+                  <AnimatedRangeCounter endStart={2} endEnd={5} suffix="x" />
                 </span>
                 <span className="text-[10px] sm:text-xs font-semibold text-brand-primary/75 dark:text-gray-300 mt-1 uppercase tracking-wide leading-tight">
                   faster process<br />execution
                 </span>
               </div>
-
+ 
             </div>
  
           </div>

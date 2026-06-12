@@ -70,7 +70,7 @@ export default function Projects({ onScrollToSection, selectedProjectsList, togg
               className="text-3xl sm:text-4xl font-extrabold text-brand-primary dark:text-white tracking-tight leading-tight"
             >
               Real Automation Solutions for <br />
-              Real Business Challenges
+              Real Business Challenges.
             </h2>
             <p className="text-brand-primary/80 dark:text-gray-300 font-medium leading-relaxed">
               A collection of case studies showcasing my approach to solving business problems through AI and workflow automation.
@@ -156,6 +156,30 @@ export default function Projects({ onScrollToSection, selectedProjectsList, togg
 
                   </div>
 
+                  {/* View Case Study and Snapshot on Mobile/Tablet (Visible below lg, hidden on desktop lg+) */}
+                  <div className="px-6 pb-6 sm:px-8 sm:pb-8 lg:hidden relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentBlueprintProject(project);
+                      }}
+                      className="w-full py-3 bg-brand-accent hover:bg-[#228074] text-white text-sm font-extrabold rounded-xl shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <ExternalLink className="w-4 h-4 text-white" />
+                      View Case Study
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLightboxImage(displayImage);
+                      }}
+                      className="w-full py-3 bg-white dark:bg-[#18313b] text-brand-primary dark:text-white border border-brand-primary/15 dark:border-white/10 hover:bg-brand-light-bg dark:hover:bg-[#1f3f4b] text-sm font-extrabold rounded-xl shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <Zap className="w-4 h-4 text-brand-accent" />
+                      View Project Snapshot
+                    </button>
+                  </div>
+
                   {/* Absolute Roll-up Image Drawer on Hover */}
                   <div className="absolute inset-0 bg-white dark:bg-[#112229] border border-brand-primary/10 dark:border-[#2a9d8f]/30 rounded-2xl overflow-hidden z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                     
@@ -168,7 +192,7 @@ export default function Projects({ onScrollToSection, selectedProjectsList, togg
                         referrerPolicy="no-referrer"
                       />
                       
-                      {/* Dark overlay showing "View Case Study" and "View Image in Full Size" */}
+                      {/* Dark overlay showing "View Case Study" and "View Project Snapshot" */}
                       <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-3 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
                         <button 
                           onClick={(e) => {
@@ -189,7 +213,7 @@ export default function Projects({ onScrollToSection, selectedProjectsList, togg
                           className="w-48 px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20 transform translate-y-2 group-hover:translate-y-0 duration-300 pointer-events-auto"
                         >
                           <Zap className="w-3.5 h-3.5 text-[#a0ded6]" />
-                          View in Full Size
+                          View Project Snapshot
                         </button>
                       </div>
                     </div>

@@ -51,6 +51,9 @@ export default function Navbar({ isDarkMode, toggleTheme }: NavbarProps) {
               <span className="text-white font-sans font-black text-xl select-none relative z-10 leading-none">M</span>
               <div className="absolute -inset-0.5 bg-gradient-to-tr from-brand-accent to-[#7dded0] rounded-xl opacity-0 group-hover:opacity-10 theme-transition"></div>
             </div>
+            <span className="font-extrabold text-xl font-sans tracking-tight text-brand-primary dark:text-white group-hover:text-brand-accent dark:group-hover:text-[#a0ded6] transition-colors">
+              Mark
+            </span>
           </a>
 
           {/* Desktop Navigation */}
