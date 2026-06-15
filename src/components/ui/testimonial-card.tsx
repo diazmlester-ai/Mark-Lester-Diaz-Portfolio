@@ -46,9 +46,11 @@ const Testimonial = React.forwardRef<HTMLDivElement, TestimonialProps>(
             </div>
           )}
 
-          <p className="text-pretty text-sm sm:text-base text-brand-primary/90 dark:text-gray-200 font-medium leading-relaxed italic relative z-10">
-            {testimonial}
-          </p>
+          <div className="flex-1 flex flex-col justify-between gap-4">
+            <p className="text-pretty text-sm sm:text-base text-brand-primary/90 dark:text-gray-200 font-medium leading-relaxed italic relative z-10 whitespace-pre-line">
+              {testimonial}
+            </p>
+          </div>
 
           <div className="flex items-center gap-4 justify-start pt-6 mt-4 border-t border-[#edf6f9] dark:border-white/5">
             <div className="flex items-center gap-4">
